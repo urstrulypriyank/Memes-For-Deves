@@ -10,7 +10,7 @@ const Navbar = (props: Props) => {
     const { language, setLanguage } = useContext(LanguageContext);
     console.log(language);
     return (
-        <div className="flex w-full  md:justify-between justify-around bg-blue-400 p-4">
+        <div className="flex w-full  md:justify-between justify-around bg-blue-400 p-4  ">
             <NavbarLeftSection />
             <NavbarRightSection />
         </div>
@@ -29,13 +29,13 @@ const NavbarLeftSection = () => {
 
 const NavbarRightSection = () => {
     return (
-        <div className="flex md:w-2/5  items-center md:justify-center   space-x-10 ">
+        <div className="flex md:w-2/5  items-center md:justify-center  space-x-10 ">
             {LANG.en.header.navlink.map((item: any) => {
                 return (
                     <Link
                         href={item.href}
                         key={item.id}
-                        className="hover:text-yellow-100 hover:text-lg"
+                        className="hover:text-yellow-100 hover:animate-pulse"
                     >
                         {item.name}
                     </Link>
