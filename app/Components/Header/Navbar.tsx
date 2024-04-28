@@ -1,14 +1,15 @@
 "use client"
 import Link from "next/link";
 import { LANG } from "@/app/utils/Language";
+import { LanguageSelector } from "./LanguageSelector";
 import { useContext } from "react";
-import { LanguageContext } from "@/app/Components/Context/ContextProviders"
-
+import { LanguageContext } from "../Context/ContextProviders";
+import { useLanguageData } from "@/app/utils/utils";
 type Props = {};
 
+
 const Navbar = (props: Props) => {
-    const { language, setLanguage } = useContext(LanguageContext);
-    console.log(language);
+
     return (
         <div className="flex w-full  md:justify-between justify-around bg-blue-400 p-4  ">
             <NavbarLeftSection />
@@ -28,9 +29,13 @@ const NavbarLeftSection = () => {
 };
 
 const NavbarRightSection = () => {
+    "use client"
+    const data = useLanguageData();
+        
+
     return (
         <div className="flex md:w-2/5  items-center md:justify-center  space-x-10 ">
-            {LANG.en.header.navlink.map((item: any) => {
+            {data.header?.navlink?.map((item: any) => {
                 return (
                     <Link
                         href={item.href}
@@ -41,6 +46,7 @@ const NavbarRightSection = () => {
                     </Link>
                 );
             })}
+            <LanguageSelector />
         </div>
     );
 };

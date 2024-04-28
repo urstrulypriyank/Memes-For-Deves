@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const LANG = {
     'en': {
         title: "Meme's For Developer",
@@ -22,5 +24,31 @@ export const LANG = {
 
             ]
         }
+    },
+    'hi': {
+        title: ' मीम्स',
+        header: {
+            navlink: [
+
+                {
+                    name: 'घर / होम',
+                    href: '/',
+                    id: 1
+                },
+                {
+                    name: 'बारे में',
+                    href: '/about',
+                    id: 2
+                },
+                {
+                    name: "अक्सर पूछे जाने वाले सवाल",
+                    href: '/faqs',
+                    id: 3
+                },
+
+            ]
+        }
+
+
     }
 }
