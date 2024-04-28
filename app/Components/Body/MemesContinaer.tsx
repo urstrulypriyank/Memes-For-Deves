@@ -4,11 +4,14 @@ import MemesList from './MemesList';
 type Props = {}
 
 const MemesContinaer = async (props: Props) => {
-    const res = await fetch(URL_API + 20);
+    const res = await fetch(URL_API, {
+        cache: "no-store"
+    });
     const data = await res.json();
 
+
     return (
-       <MemesList memes={data.memes} />
+        <MemesList memes={data.memes} />
     )
 }
 

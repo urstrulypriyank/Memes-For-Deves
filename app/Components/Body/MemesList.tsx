@@ -1,16 +1,50 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import MemesCard from "./MemeCard";
+import ShimmerMemeCard from "./ShimmerMemeCard";
+import { fetchData } from "@/app/utils/utils"
 
 type Props = {
     memes: any[];
 };
 
 const MemesList = (props: Props) => {
-    console.log(props.memes);
-    const [memes, setMemes] = useState(props.memes || []);
 
-    return (<>
+    const [memes, setMemes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    // if memes is not present the 
+
+    useEffect(() => {
+        //@ts-ignore
+        setMemes(props.memes)
+        setIsLoading(false);
+    }, [props.memes])
+
+
+    useEffect(() => {
+
+        const handleScroll = async () => {
+            if (window.innerHeight + window.scrollY + 10 >= document.body.offsetHeight) {
+                setIsLoading(true);
+                const newdata = await fetchData();
+                console.log(newdata, "new data from useEffect")
+                //@ts-ignore
+                setMemes((memes) => [...memes, ...newdata])
+                setIsLoading(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [])
+
+
+
+
+    return (<div className="md:flex md:flex-row flex-wrap justify-center">
+
+
 
         {
             memes?.map((meme: any) => {
@@ -18,20 +52,20 @@ const MemesList = (props: Props) => {
                     <MemesCard key={meme.ups} url={meme.url} title={meme.title} author={meme.author} />
                 )
             })
+
         }
-    </>)
+
+        {
+
+            isLoading &&
+            Array(20).fill(0).map((_, index) => {
+                return (<ShimmerMemeCard key={index} />)
+            })
+        }
+
+    </div>)
 };
 
 export default MemesList;
 
-const MemesCard = ({ url, title, author }: { url: string, title: string, author: string }) => {
-    return (
-        <div className="w-90 border border-black  m-4 my-10 p-2">
-            <Image src={url} alt={title} height={300} width={300} className="w-full max-h-60  min-h-44]" />
-            <div className="ml-1">
-                <h3 className="">@{author}</h3>
-                <p className="ml-1">{title}</p>
-            </div>
-        </div>
-    );
-};
+
