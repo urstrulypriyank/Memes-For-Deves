@@ -9,11 +9,10 @@ export default function Home() {
   const data = LANG["en"];
   return (
     <div>
-      <ContextWrapper>
-        <Navbar />
-        <PageHeading title={data.title} />
+     
+              <PageHeading title={data.title} />
         <MemesContinaer />
-      </ContextWrapper>
+      
     </div>
   );
 }
