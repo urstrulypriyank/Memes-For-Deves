@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Header/Navbar";
 import ContextWrapper from "./Components/Context/ContextWrapper";
-
+import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,6 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="preconnect" href="https://meme-api.com/gimme" />
+        <link rel="dns-prefetch" href="https://i.redd.it" />
+      </Head>
       <body className={inter.className}>
         <ContextWrapper>
           <Navbar />

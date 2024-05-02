@@ -8,11 +8,11 @@ import MemesContinaer from "./Components/Body/MemesContinaer";
 export default function Home() {
   const data = LANG["en"];
   return (
-    <div>
-     
-              <PageHeading title={data.title} />
-        <MemesContinaer />
-      
+    <div className="bg-blue-200">
+
+      <PageHeading title={data.title} />
+      <MemesContinaer />
+
     </div>
   );
 }
