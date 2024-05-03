@@ -22,7 +22,7 @@ const acordionContext = createContext<AcordionContextType>({
 });
 
 const Acordion = ({ faqs }: { faqs: any[] }) => {
-  const [openIndex, setOpenIndex] = useState<number>(-1);
+  const [openIndex, setOpenIndex] = useState<number>(0);
   const [isExpandAll, setIsExpandAll] = useState<boolean>(false);
 
   return (
