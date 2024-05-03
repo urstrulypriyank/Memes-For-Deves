@@ -57,7 +57,7 @@ const Card = ({ title, description, index }: CardType) => {
       className="text-black cursor-pointer m-2"
       onClick={() => {
         if (isOpen) {
-          setOpenIndex?.(-1); // Use optional chaining to avoid errors
+          setOpenIndex?.(-1); 
         } else {
           setOpenIndex?.(index);
         }
