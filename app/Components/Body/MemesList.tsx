@@ -24,7 +24,7 @@ const MemesList = (props: Props) => {
     useEffect(() => {
 
         const handleScroll = async () => {
-            if (window.innerHeight + window.scrollY + 10 >= document.body.offsetHeight) {
+            if (window.innerHeight + window.scrollY + 4 >= document.body.offsetHeight) {
                 setIsLoading(true);
                 const newdata = await fetchData();
                 console.log(newdata, "new data from useEffect")
