@@ -27,7 +27,7 @@ const Acordion = ({ faqs }: { faqs: any[] }) => {
 
   return (
     <div className="p-6 md:w-2/3 md:mx-auto border border-black">
-      <div className="text-xl font-semibold h-fit  [&>*]:list-none flex justify-between">
+      <div className="text-xl font-semibold h-fit  [&>*]:list-none flex justify-between mx-2 m-1 p-2 border-b border-black">
         <li>Faq's</li>
         <li onClick={() => setIsExpandAll(!isExpandAll)}>
           {" "}
@@ -67,7 +67,7 @@ const Card = ({ title, description, index }: CardType) => {
 
   return (
     <div
-      className="text-black cursor-pointer m-2"
+      className="text-black cursor-pointer m-2 border-b border-black py-2"
       onClick={() => {
         if (isOpen) {
           setOpenIndex?.(-1);
