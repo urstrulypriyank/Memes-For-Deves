@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://meme-api.com/gimme" />
         <link rel="dns-prefetch" href="https://i.redd.it" />
       </Head>
-      <body className={inter.className}>
+      <body className={[inter.className, 'bg-blue-200'].join(' ')} >
         <ContextWrapper>
           <Navbar />
           {children}

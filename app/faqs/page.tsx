@@ -1,11 +1,22 @@
-import React from 'react'
-
+"use client"
+import React, { useContext } from 'react'
+import Acordion from "@/app/Components/acordion/Acordion"
+import PageHeading from '../Components/Header/PageHeading'
+import { LanguageContext } from '../Components/Context/ContextProviders'
+import { LANG } from '../utils/Language'
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
+  const { language, } = useContext<any>(LanguageContext);
+  // @ts-ignore
+  const data = LANG[language]?.faqsPage;
+
   return (
-    <div>faqs</div>
+    <div >
+      <PageHeading title={data?.title} />
+      <Acordion faqs={data?.faqs} />
+    </div>
   )
 }
 
-export default page
+export default Page;

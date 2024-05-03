@@ -7,7 +7,7 @@ import { LANG } from "@/app/utils/Language"
 export async function fetchData() {
     try {
         const res = await fetch(URL_API, {
-            cache: 'no-store'
+            // cache: 'no-store'
         })
         let data = await res.json();
         data = data.memes;
