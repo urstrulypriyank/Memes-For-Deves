@@ -9,7 +9,7 @@ import React, {
 // Define the context type
 type AcordionContextType = {
   openIndex: number | string;
-  setOpenIndex?: Dispatch<SetStateAction<number>> | string;
+  setOpenIndex?: Dispatch<SetStateAction<number>>;
   isExpandAll?: boolean;
   setIsExpandAll: Dispatch<SetStateAction<boolean>> | undefined;
 };
