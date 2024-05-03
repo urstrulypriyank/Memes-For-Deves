@@ -28,7 +28,7 @@ const Acordion = ({ faqs }: { faqs: any[] }) => {
   return (
     <div className="p-6 md:w-2/3 md:mx-auto border border-black">
       <div className="text-xl font-semibold h-fit  [&>*]:list-none flex justify-between mx-2 m-1 p-2 border-b border-black">
-        <li>Faq's</li>
+        <li>Faq&apos;s</li>
         <li onClick={() => setIsExpandAll(!isExpandAll)}>
           {" "}
           {isExpandAll ? "Collapse All" : "Expand All"}
