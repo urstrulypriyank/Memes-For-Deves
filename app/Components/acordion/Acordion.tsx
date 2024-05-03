@@ -14,7 +14,7 @@ type AcordionContextType = {
   setIsExpandAll: Dispatch<SetStateAction<boolean>> | undefined;
 };
 
-const acordionContext = createContext < AcordionContextType > ({
+const acordionContext = createContext<AcordionContextType>({
   openIndex: -1,
   setOpenIndex: undefined, // This is okay for initial context value
   isExpandAll: false,
@@ -22,8 +22,8 @@ const acordionContext = createContext < AcordionContextType > ({
 });
 
 const Acordion = ({ faqs }: { faqs: any[] }) => {
-  const [openIndex, setOpenIndex] = useState < number > (0);
-  const [isExpandAll, setIsExpandAll] = useState < boolean > (false);
+  const [openIndex, setOpenIndex] = useState<number>(0);
+  const [isExpandAll, setIsExpandAll] = useState<boolean>(false);
 
   return (
     <div className="p-6 md:w-2/3 md:mx-auto border border-black">
@@ -31,7 +31,7 @@ const Acordion = ({ faqs }: { faqs: any[] }) => {
         <li>Faq&apos;s</li>
         <li onClick={() => setIsExpandAll(!isExpandAll)}>
           {" "}
-          {isExpandAll ? "Collapse All" : "Expand All"}
+          {isExpandAll ? "Collapse" : "Expand All"}
 
         </li>
       </div>
@@ -80,12 +80,12 @@ const Card = ({ title, description, index }: CardType) => {
       <div className="font-bold text-lg flex justify-between px-2">
         <div>{title}</div>
 
-        <div>{isOpen ? "⬆" : "⬇"}</div>
+        <div>{isOpen ? "▲" : "▼"}</div>
       </div>
 
       {(isOpen || isExpandAll) && (
         <p
-          className="text-justify text-wrap px-4"
+          className="text-justify text-wrap px-4 py-2"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
