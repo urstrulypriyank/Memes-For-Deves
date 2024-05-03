@@ -8,23 +8,36 @@ import React, {
 
 // Define the context type
 type AcordionContextType = {
-  openIndex: number;
-  setOpenIndex?: Dispatch<SetStateAction<number>>; 
+  openIndex: number | string;
+  setOpenIndex?: Dispatch<SetStateAction<number>> | string;
+  isExpandAll?: boolean;
+  setIsExpandAll: Dispatch<SetStateAction<boolean>> | undefined;
 };
 
 const acordionContext = createContext<AcordionContextType>({
   openIndex: -1,
   setOpenIndex: undefined, // This is okay for initial context value
+  isExpandAll: false,
+  setIsExpandAll: undefined,
 });
 
 const Acordion = ({ faqs }: { faqs: any[] }) => {
   const [openIndex, setOpenIndex] = useState<number>(-1);
+  const [isExpandAll, setIsExpandAll] = useState<boolean>(false);
 
   return (
     <div className="p-6 md:w-2/3 md:mx-auto border border-black">
-      <h2 className="text-xl font-semibold h-fit text-center">FAQ's</h2>
+      <div className="text-xl font-semibold h-fit  [&>*]:list-none flex justify-between">
+        <li>Faq's</li>
+        <li onClick={() => setIsExpandAll(!isExpandAll)}>
+          {" "}
+          {isExpandAll ? "Collapse All" : "Expand All"}
+        </li>
+      </div>
 
-      <acordionContext.Provider value={{ openIndex, setOpenIndex }}>
+      <acordionContext.Provider
+        value={{ openIndex, setOpenIndex, isExpandAll, setIsExpandAll }}
+      >
         {faqs?.map(({ title, description, _id }: any) => {
           return (
             <Card
@@ -49,7 +62,7 @@ type CardType = {
 };
 
 const Card = ({ title, description, index }: CardType) => {
-  const { openIndex, setOpenIndex } = useContext(acordionContext);
+  const { openIndex, setOpenIndex, isExpandAll } = useContext(acordionContext);
   const isOpen = openIndex === index;
 
   return (
@@ -57,15 +70,15 @@ const Card = ({ title, description, index }: CardType) => {
       className="text-black cursor-pointer m-2"
       onClick={() => {
         if (isOpen) {
-          setOpenIndex?.(-1); 
+          setOpenIndex?.(-1);
         } else {
           setOpenIndex?.(index);
         }
       }}
     >
-      <p className="font-bold">{title}</p>
+      <p className="font-bold text-lg">{title}</p>
 
-      {isOpen && (
+      {(isOpen || isExpandAll) && (
         <p
           className="text-justify text-wrap"
           onClick={(e) => {
